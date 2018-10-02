@@ -1,0 +1,83 @@
+C51 COMPILER V9.53.0.0   SMSA                                                              09/23/2018 13:39:17 PAGE 1   
+
+
+C51 COMPILER V9.53.0.0, COMPILATION OF MODULE SMSA
+OBJECT MODULE PLACED IN smsa.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE smsa.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          // File Name: gsm interface on 8051
+   2          // Author: R.venkatesan
+   3          // lcd 16X2 8bit method 
+   4           // lcd pin connection port0 -data pin (D0-D7)
+   5           // control pin lcd conection  RS=P2^7, R/W=P2^6, E=P2^5
+   6           
+   7          
+   8          # include <reg51.h>
+   9          # include <stdio.h>
+  10          # include "lcd.h"  // lcd library 
+  11          /* if want change the lcd pin connection open lcd file library change the pin as per your aspect 
+  12           And also remain you change busy flag= bf(used name in lcdlibrary ) also for inlcd pin data  lcd file liba
+             -ry  */
+  13           # include "serial data.h"
+  14           sbit ir=P1^0;  // interface  ir sensor on call make
+  15           void sms();
+  16           void main()
+  17           {
+  18   1        port(); // pulldown the all pin in micro controller
+  19   1        lcd_initial(); // lcd basic initialization cammand line 
+  20   1         serial();  // set 9600 baud rate
+  21   1         ir=1;
+  22   1         {
+  23   2         while(1)
+  24   2         {
+  25   3           lcd_com(0x01);  // lcd cammand dispaly frist line
+  26   3           lcd_string(" gsm interface  "); // write your own word in double quotes
+  27   3           
+  28   3           lcd_com (0xc0);  // lcd cammand dispaly second line
+  29   3           lcd_string(" make sms");  // write your own word in double quotes
+  30   3           
+  31   3            delay(100); // delay for seen the lcd lines display
+  32   3           
+  33   3           if(ir==1)
+  34   3           {
+  35   4             lcd_com(0x01);  // lcd cammand dispaly frist line
+  36   4           lcd_string(" sending sms  "); // write your own word in double quotes
+  37   4           sms();
+  38   4             
+  39   4           }
+  40   3         }
+  41   2       }   
+  42   1       }
+  43           
+  44           void sms()
+  45            {
+  46   1        str("AT\r\n");
+  47   1            delay(100);
+  48   1            str("AT+CMGF=1\r\n");
+  49   1            delay(500);
+  50   1            str("AT+CMGS=\"9677956436\"\r\n");
+  51   1             delay(200);
+  52   1          str(" time to lead ");
+  53   1            tx(0x1A);  // ctrl+z ascii code send sms
+  54   1            delay(100);
+C51 COMPILER V9.53.0.0   SMSA                                                              09/23/2018 13:39:17 PAGE 2   
+
+  55   1        }
+  56          
+  57             
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    343    ----
+   CONSTANT SIZE    =     97    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

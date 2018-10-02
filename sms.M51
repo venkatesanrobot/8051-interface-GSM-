@@ -1,0 +1,288 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        09/23/2018  13:39:17  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE smsa.obj TO sms RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  smsa.obj (SMSA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  sms (SMSA)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0003H     UNIT         _DATA_GROUP_
+            IDATA   000BH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0061H     UNIT         ?CO?SMSA
+            CODE    0861H     0045H     UNIT         ?PR?SMS?SMSA
+            CODE    08A6H     0044H     UNIT         ?PR?MAIN?SMSA
+            CODE    08EAH     0025H     UNIT         ?PR?_LCD_STRING?SMSA
+            CODE    090FH     0025H     UNIT         ?PR?_STR?SMSA
+            CODE    0934H     0020H     UNIT         ?PR?_DELAY?SMSA
+            CODE    0954H     0019H     UNIT         ?PR?LCD_INITIAL?SMSA
+            CODE    096DH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0986H     0010H     UNIT         ?PR?READY?SMSA
+            CODE    0996H     000EH     UNIT         ?PR?_LCD_COM?SMSA
+            CODE    09A4H     000EH     UNIT         ?PR?_LCD_DATA?SMSA
+            CODE    09B2H     000CH     UNIT         ?PR?SERIAL?SMSA
+            CODE    09BEH     000CH     UNIT         ?C_C51STARTUP
+            CODE    09CAH     000BH     UNIT         ?PR?PORT?SMSA
+            CODE    09D5H     0008H     UNIT         ?PR?_TX?SMSA
+
+
+
+OVERLAY MAP OF MODULE:   sms (SMSA)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?SMSA
+
+?PR?MAIN?SMSA                  -----    -----
+  +--> ?PR?PORT?SMSA
+  +--> ?PR?LCD_INITIAL?SMSA
+  +--> ?PR?SERIAL?SMSA
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/23/2018  13:39:17  PAGE 2
+
+
+  +--> ?PR?_LCD_COM?SMSA
+  +--> ?CO?SMSA
+  +--> ?PR?_LCD_STRING?SMSA
+  +--> ?PR?_DELAY?SMSA
+  +--> ?PR?SMS?SMSA
+
+?PR?LCD_INITIAL?SMSA           -----    -----
+  +--> ?PR?_LCD_COM?SMSA
+
+?PR?_LCD_COM?SMSA              -----    -----
+  +--> ?PR?READY?SMSA
+
+?PR?_LCD_STRING?SMSA           0008H    0003H
+  +--> ?PR?_LCD_DATA?SMSA
+
+?PR?_LCD_DATA?SMSA             -----    -----
+  +--> ?PR?READY?SMSA
+
+?PR?SMS?SMSA                   -----    -----
+  +--> ?CO?SMSA
+  +--> ?PR?_STR?SMSA
+  +--> ?PR?_DELAY?SMSA
+  +--> ?PR?_TX?SMSA
+
+?PR?_STR?SMSA                  0008H    0003H
+  +--> ?PR?_TX?SMSA
+
+
+
+SYMBOL TABLE OF MODULE:  sms (SMSA)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        SMSA
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:09B2H         PUBLIC        serial
+  C:0954H         PUBLIC        lcd_initial
+  C:0934H         PUBLIC        _delay
+  C:0986H         PUBLIC        ready
+  B:0098H.1       PUBLIC        TI
+  C:08A6H         PUBLIC        main
+  C:08EAH         PUBLIC        _lcd_string
+  C:09A4H         PUBLIC        _lcd_data
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:09CAH         PUBLIC        port
+  B:0080H.7       PUBLIC        bf
+  D:008DH         PUBLIC        TH1
+  B:00A0H.5       PUBLIC        en
+  C:0861H         PUBLIC        sms
+  C:0996H         PUBLIC        _lcd_com
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/23/2018  13:39:17  PAGE 3
+
+
+  B:0088H.6       PUBLIC        TR1
+  C:090FH         PUBLIC        _str
+  B:0090H.0       PUBLIC        ir
+  B:00A0H.7       PUBLIC        rs
+  B:00A0H.6       PUBLIC        rw
+  C:09D5H         PUBLIC        _tx
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        itime
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0934H         LINE#         9
+  C:0934H         LINE#         10
+  C:0934H         LINE#         12
+  C:093EH         LINE#         13
+  C:0953H         LINE#         14
+  -------         ENDPROC       _DELAY
+  -------         PROC          PORT
+  C:09CAH         LINE#         16
+  C:09CAH         LINE#         17
+  C:09CAH         LINE#         18
+  C:09CDH         LINE#         19
+  C:09CFH         LINE#         20
+  C:09D1H         LINE#         21
+  C:09D4H         LINE#         22
+  -------         ENDPROC       PORT
+  -------         PROC          READY
+  -------         DO            
+  C:098CH         SYMBOL        god
+  -------         ENDDO         
+  C:0986H         LINE#         23
+  C:0986H         LINE#         24
+  C:0986H         LINE#         25
+  C:0988H         LINE#         26
+  C:098AH         LINE#         27
+  C:098CH         LINE#         28
+  C:098CH         LINE#         29
+  C:098EH         LINE#         30
+  C:0990H         LINE#         31
+  C:0993H         LINE#         32
+  C:0995H         LINE#         33
+  -------         ENDPROC       READY
+  -------         PROC          _LCD_COM
+  D:0007H         SYMBOL        ll
+  C:0996H         LINE#         34
+  C:0996H         LINE#         35
+  C:0996H         LINE#         36
+  C:0999H         LINE#         37
+  C:099BH         LINE#         38
+  C:099DH         LINE#         39
+  C:099FH         LINE#         40
+  C:09A1H         LINE#         41
+  C:09A3H         LINE#         42
+  -------         ENDPROC       _LCD_COM
+  -------         PROC          _LCD_DATA
+  D:0007H         SYMBOL        lll
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/23/2018  13:39:17  PAGE 4
+
+
+  C:09A4H         LINE#         44
+  C:09A4H         LINE#         45
+  C:09A4H         LINE#         46
+  C:09A7H         LINE#         47
+  C:09A9H         LINE#         48
+  C:09ABH         LINE#         49
+  C:09ADH         LINE#         50
+  C:09AFH         LINE#         51
+  C:09B1H         LINE#         52
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          LCD_INITIAL
+  C:0954H         LINE#         56
+  C:0954H         LINE#         57
+  C:0954H         LINE#         58
+  C:0959H         LINE#         59
+  C:095EH         LINE#         60
+  C:0963H         LINE#         61
+  C:0968H         LINE#         62
+  -------         ENDPROC       LCD_INITIAL
+  -------         PROC          _LCD_STRING
+  D:0008H         SYMBOL        c
+  C:08EAH         LINE#         66
+  C:08F0H         LINE#         67
+  C:08F0H         LINE#         68
+  C:08FBH         LINE#         70
+  C:090EH         LINE#         71
+  -------         ENDPROC       _LCD_STRING
+  -------         PROC          SERIAL
+  C:09B2H         LINE#         8
+  C:09B2H         LINE#         9
+  C:09B2H         LINE#         10
+  C:09B5H         LINE#         11
+  C:09B8H         LINE#         12
+  C:09BBH         LINE#         13
+  C:09BDH         LINE#         14
+  -------         ENDPROC       SERIAL
+  -------         PROC          _STR
+  D:0008H         SYMBOL        F
+  C:090FH         LINE#         15
+  C:0915H         LINE#         16
+  C:0915H         LINE#         17
+  C:0920H         LINE#         18
+  C:0933H         LINE#         19
+  -------         ENDPROC       _STR
+  -------         PROC          _TX
+  D:0007H         SYMBOL        Q
+  C:09D5H         LINE#         21
+  C:09D5H         LINE#         22
+  C:09D5H         LINE#         23
+  C:09D7H         LINE#         24
+  C:09DAH         LINE#         25
+  C:09DCH         LINE#         26
+  -------         ENDPROC       _TX
+  -------         PROC          MAIN
+  C:08A6H         LINE#         16
+  C:08A6H         LINE#         17
+  C:08A6H         LINE#         18
+BL51 BANKED LINKER/LOCATER V6.22                                                      09/23/2018  13:39:17  PAGE 5
+
+
+  C:08A9H         LINE#         19
+  C:08ACH         LINE#         20
+  C:08AFH         LINE#         21
+  C:08B1H         LINE#         22
+  C:08B1H         LINE#         23
+  C:08B1H         LINE#         24
+  C:08B1H         LINE#         25
+  C:08B6H         LINE#         26
+  C:08BFH         LINE#         28
+  C:08C4H         LINE#         29
+  C:08CDH         LINE#         31
+  C:08D4H         LINE#         33
+  C:08D7H         LINE#         34
+  C:08D7H         LINE#         35
+  C:08DCH         LINE#         36
+  C:08E5H         LINE#         37
+  C:08E8H         LINE#         39
+  C:08E8H         LINE#         40
+  -------         ENDPROC       MAIN
+  -------         PROC          SMS
+  C:0861H         LINE#         44
+  C:0861H         LINE#         45
+  C:0861H         LINE#         46
+  C:086AH         LINE#         47
+  C:0871H         LINE#         48
+  C:087AH         LINE#         49
+  C:0881H         LINE#         50
+  C:088AH         LINE#         51
+  C:0891H         LINE#         52
+  C:089AH         LINE#         53
+  C:089FH         LINE#         54
+  -------         ENDPROC       SMS
+  -------         ENDMOD        SMSA
+
+  -------         MODULE        ?C?CLDPTR
+  C:096DH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 01B8H BYTE (21%) *
+******************************************************************************
+
+Program Size: data=12.0 xdata=0 code=480
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
