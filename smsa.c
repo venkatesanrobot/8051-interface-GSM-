@@ -47,7 +47,7 @@
 			delay(100);
 			str("AT+CMGF=1\r\n");
 			delay(500);
-			str("AT+CMGS=\"9677956436\"\r\n");
+			str("AT+CMGS=\"967XXXXXXX\"\r\n");  // use yours phone number
 		   delay(200);
 		str(" time to lead ");
 			tx(0x1A);  // ctrl+z ascii code send sms
